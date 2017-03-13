@@ -1,0 +1,13 @@
+{
+    "name": "izaika/framework",
+    "description": "My own framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igor Zaika",
+            "email": "izaika89@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
