@@ -1,3 +1,5 @@
 .idea
 config
 /vendor/
+index.php
+.htaccess

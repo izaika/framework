@@ -16,7 +16,7 @@ class Application
 	public $config = [];
 
 
-	static public function getInstance(array $config = [])
+	static public function getInstance(array $config = []): self
 	{
 		if (is_null(self::$_instance)) {
 			self::$_instance = new self($config);
