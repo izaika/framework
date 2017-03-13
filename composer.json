@@ -8,6 +8,11 @@
             "email": "izaika89@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Izaika\\Framework\\": "src/"
+        }
+    },
     "minimum-stability": "dev",
     "require": {}
 }
