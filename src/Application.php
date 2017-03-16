@@ -2,6 +2,8 @@
 
 namespace Izaika\Framework;
 
+use Izaika\Framework\Router\Router;
+
 /**
  * Class Application
  * Singleton
@@ -33,14 +35,10 @@ class Application
 
 	public function run()
 	{
-		// TODO: implement run method
+		$router = new Router($this->config);
+		$router->getRoute();
 	}
 
-
-	public function __destruct()
-	{
-		// TODO: implement __destruct method
-	}
 
 
 	private function __clone()

@@ -8,14 +8,14 @@ namespace Izaika\Framework\Request;
  */
 class Request
 {
-	private static $_instance = null;
-	private $_headers = [];
-	private $_user_agent = '';
-	private $_docroot = '';
-	private $_uri = '';
-	private $_path = '';
-	private $_query_parameters = [];
-	private $_method = '';
+	private static $instance = null;
+	private $headers = [];
+	private $user_agent = '';
+	private $docroot = '';
+	private $uri = '';
+	private $path = '';
+	private $query_parameters = [];
+	private $method = '';
 
 
 	private function __construct()
@@ -34,39 +34,39 @@ class Request
 				}
 			}
 		}
-		$this->_headers = $headers;
+		$this->headers = $headers;
 
 		if (isset($_SERVER['REQUEST_METHOD'])) {
-			$this->_method = $_SERVER['REQUEST_METHOD'];
+			$this->method = $_SERVER['REQUEST_METHOD'];
 		}
 
 		if (isset($_SERVER['HTTP_USER_AGENT'])) {
-			$this->_user_agent = $_SERVER['HTTP_USER_AGENT'];
+			$this->user_agent = $_SERVER['HTTP_USER_AGENT'];
 		}
 
 		if (isset($_SERVER['CONTEXT_PREFIX'])) {
-			$this->_docroot = $_SERVER['CONTEXT_PREFIX'];
+			$this->docroot = $_SERVER['CONTEXT_PREFIX'];
 		}
 
 		if (isset($_SERVER["REQUEST_URI"])) {
-			$this->_uri = $_SERVER["REQUEST_URI"];
+			$this->uri = $_SERVER["REQUEST_URI"];
 		}
 
-		if ($this->_uri) {
-			if ($this->_docroot) {
-				$path = str_replace($this->_docroot . '/', '', $this->_uri);
+		if ($this->uri) {
+			if ($this->docroot) {
+				$path = str_replace($this->docroot, '', $this->uri);
 			} else {
-				$path = str_replace('/', '', $this->_uri);
+				$path = $this->uri;
 			}
 
 			if (strpos($path, '?') !== false) $path = explode('?', $path)[0];
-			$this->_path = $path;
+			$this->path = $path;
 		}
 
 		if (isset($_SERVER["QUERY_STRING"])) {
 			foreach (explode('&', $_SERVER["QUERY_STRING"]) as $parameter) {
 				$parameter_arr = explode('=', $parameter);
-				$this->_query_parameters[$parameter_arr[0]] = @$parameter_arr[1] ? $parameter_arr[1] : '';
+				$this->query_parameters[$parameter_arr[0]] = @$parameter_arr[1] ? $parameter_arr[1] : '';
 			}
 		}
 	}
@@ -74,46 +74,52 @@ class Request
 
 	public static function getInstance(): self
 	{
-		if (is_null(self::$_instance)) {
-			self::$_instance = new self();
+		if (is_null(self::$instance)) {
+			self::$instance = new self();
 		}
 
-		return self::$_instance;
+		return self::$instance;
 	}
 
 
 	public function getUri(): string
 	{
-		return $this->_uri;
+		return $this->uri;
 	}
 
 
 	public function getMethod(): string
 	{
-		return $this->_method;
+		return $this->method;
 	}
 
 	public function getHeaders(): array
 	{
-		return $this->_headers;
+		return $this->headers;
 	}
 
 
 	public function getHeader(string $key = ''): string
 	{
-		return isset($this->_headers[$key]) ? $this->_headers[$key] : '';
+		return isset($this->headers[$key]) ? $this->headers[$key] : '';
 	}
 
 
 	public function getQueryParameters(): array
 	{
-		return $this->_query_parameters;
+		return $this->query_parameters;
 	}
 
 
 	public function getQueryParameter(string $key = ''): string
 	{
-		return isset($this->_query_parameters[$key]) ? $this->_query_parameters[$key] : '';
+		return isset($this->query_parameters[$key]) ? $this->query_parameters[$key] : '';
+	}
+
+
+	public function getPath(): string
+	{
+		return $this->path;
 	}
 
 
