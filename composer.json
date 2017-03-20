@@ -14,5 +14,7 @@
         }
     },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "duncan3dc/blade": "^3.4"
+    }
 }
