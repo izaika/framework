@@ -2,6 +2,7 @@
 
 namespace Izaika\Framework;
 
+use Izaika\Framework\Response\Response;
 use Izaika\Framework\Router\Route;
 use Izaika\Framework\Router\Router;
 
@@ -48,7 +49,10 @@ class Application
 				$reflection_method = $reflection_class->getMethod($controller_method_name);
 				if ($reflection_method->isPublic()) {
 					$controller = new $controller_name($route);
-					$controller->$controller_method_name();
+					$response = $controller->$controller_method_name(); /** @var $response Response */
+					if ($response instanceof Response) {
+						$response->send();
+					}
 				} else {
 					throw new \ErrorException("Method $controller_method_name is not public in controller $controller_name");
 				}
