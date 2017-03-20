@@ -41,8 +41,24 @@ class Application
 
 		$controller_name		= $route->getController();
 		$controller_method_name	= $route->getMethod();
-	}
 
+		if (class_exists($controller_name)) {
+			$reflection_class = new \ReflectionClass($controller_name);
+			if ($reflection_class->hasMethod($controller_method_name)) {
+				$reflection_method = $reflection_class->getMethod($controller_method_name);
+				if ($reflection_method->isPublic()) {
+					$controller = new $controller_name($route);
+					$controller->$controller_method_name();
+				} else {
+					throw new \ErrorException("Method $controller_method_name is not public in controller $controller_name");
+				}
+			} else {
+				throw new \ErrorException("Method $controller_method_name does not exist in controller $controller_name");
+			}
+		} else {
+			throw new \ErrorException("Controller $controller_name does not exist");
+		}
+	}
 
 
 	private function __clone()
