@@ -2,6 +2,7 @@
 
 namespace Izaika\Framework;
 
+use Izaika\Framework\Router\Route;
 use Izaika\Framework\Router\Router;
 
 /**
@@ -36,7 +37,10 @@ class Application
 	public function run()
 	{
 		$router = new Router($this->config);
-		$router->getRoute();
+		$route = $router->getRoute(); /** @var $route Route */
+
+		$controller_name		= $route->getController();
+		$controller_method_name	= $route->getMethod();
 	}
 
 
