@@ -48,8 +48,8 @@ class Application
 		$router = new Router($this->config);
 		$route = $router->getRoute(); /** @var $route Route */
 
-		$controller_name		= $route->getController();
-		$controller_method_name	= $route->getMethod();
+		$controller_name = $route->getController();
+		$controller_method_name = $route->getMethod();
 
 		if (class_exists($controller_name)) {
 			$reflection_class = new \ReflectionClass($controller_name);
@@ -57,7 +57,8 @@ class Application
 				$reflection_method = $reflection_class->getMethod($controller_method_name);
 				if ($reflection_method->isPublic()) {
 					$controller = new $controller_name($route);
-					$response = $controller->$controller_method_name(); /** @var $response Response */
+					$response = $controller->$controller_method_name();
+					/** @var $response Response */
 					if ($response instanceof Response) {
 						$response->send();
 					}

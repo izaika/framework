@@ -24,7 +24,8 @@ class JsonResponse extends Response
 	/**
 	 * @inheritdoc
 	 */
-	public function sendBody(){
+	public function sendBody()
+	{
 		echo json_encode($this->body);
 	}
 }

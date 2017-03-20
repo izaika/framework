@@ -62,7 +62,7 @@ class Response
 
 	public function sendHeaders()
 	{
-		header($_SERVER['SERVER_PROTOCOL'] . $this->status . array_key_exists($this->status, self::STATUS_MSGS) ? ' '.self::STATUS_MSGS[$this->status] : null);
+		header($_SERVER['SERVER_PROTOCOL'] . $this->status . array_key_exists($this->status, self::STATUS_MSGS) ? ' ' . self::STATUS_MSGS[$this->status] : null);
 		if ($this->headers) {
 			foreach ($this->headers as $key => $value) {
 				header("$key: $value");
@@ -74,7 +74,7 @@ class Response
 	/**
 	 * @return string
 	 */
-	public function getBody():string
+	public function getBody(): string
 	{
 		return $this->body;
 	}

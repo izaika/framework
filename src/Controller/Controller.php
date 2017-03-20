@@ -33,7 +33,7 @@ abstract class Controller
 	final protected function render(string $view_name, array $variables)
 	{
 		if (!$this->renderer) {
-			$this->renderer = new BladeInstance(APP_PATH.'views', APP_PATH.'cache/views');
+			$this->renderer = new BladeInstance(APP_PATH . 'views', APP_PATH . 'cache/views');
 		}
 		echo $this->renderer->render($view_name, $variables);
 	}
