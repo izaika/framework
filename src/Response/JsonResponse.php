@@ -2,9 +2,19 @@
 
 namespace Izaika\Framework\Response;
 
+/**
+ * Class JsonResponse
+ *
+ * @package Izaika\Framework
+ */
 class JsonResponse extends Response
 {
 
+	/**
+	 * JsonResponse constructor.
+	 * @param int $status
+	 * @param $body
+	 */
 	public function __construct(int $status = self::DEFAULT_STATUS, $body)
 	{
 		parent::__construct($status, $body);

@@ -2,6 +2,11 @@
 
 namespace Izaika\Framework\Response;
 
+/**
+ * Class Response
+ *
+ * @package Izaika\Framework
+ */
 class Response
 {
 	const STATUS_MSGS = [
@@ -21,6 +26,11 @@ class Response
 	protected $body = '';
 
 
+	/**
+	 * Response constructor.
+	 * @param int $status
+	 * @param $body
+	 */
 	public function __construct(int $status = self::DEFAULT_STATUS, $body)
 	{
 		$this->status = $status;
@@ -35,6 +45,9 @@ class Response
 	}
 
 
+	/**
+	 * @return array
+	 */
 	public function getHeaders(): array
 	{
 		return $this->headers;
@@ -58,6 +71,9 @@ class Response
 	}
 
 
+	/**
+	 * @return string
+	 */
 	public function getBody():string
 	{
 		return $this->body;

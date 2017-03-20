@@ -20,6 +20,10 @@ class Application
 	public $config = [];
 
 
+	/**
+	 * @param array $config
+	 * @return Application
+	 */
 	static public function getInstance(array $config = []): self
 	{
 		if (is_null(self::$_instance)) {
@@ -29,6 +33,10 @@ class Application
 	}
 
 
+	/**
+	 * Application constructor.
+	 * @param array $config
+	 */
 	private function __construct(array $config = [])
 	{
 		$this->config = $config;
